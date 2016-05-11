@@ -10,13 +10,13 @@ public interface Picture {
 
 	void setPixel(int x, int y, Pixel p);
 	void setPixel(Coordinate c, Pixel p);
-	
+
 	SubPicture extract(int xoff, int yoff, int width, int height);
 	SubPicture extract(Coordinate a, Coordinate b);
 	SubPicture extract(Region r);
-	
+
 	ObservablePicture createObservable();
-	
+
 	Picture copy();
 }
 

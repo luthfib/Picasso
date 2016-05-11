@@ -56,6 +56,13 @@ public class PictureImpl extends AnyPicture {
 		return pixels[0].length;
 	}
 
+	//PF: Reads Picture from URL.
+	//It does this by using ImageIO's read method which 
+	//takes in a URL and converts it to a Buffered Image (which has RGB values).
+	//The Buffered Image is then converted to a Picture using
+	//Buffered Image's dimensions to create the Picture object.
+	//Each Pixel is then converted and set into the Picture object
+	//using Picture's Set Pixel method and ColorPixel's rgbToPixel method.
 	public static Picture readFromURL(String url) throws IOException {
 		BufferedImage bi = ImageIO.read(new URL(url));
 		Picture picture = new PictureImpl(bi.getWidth(), bi.getHeight());

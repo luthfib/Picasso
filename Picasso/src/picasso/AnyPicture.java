@@ -1,7 +1,7 @@
 package picasso;
 
 abstract public class AnyPicture implements Picture {
-
+	
 	abstract public int getWidth();
 	abstract public int getHeight();
 
@@ -24,7 +24,7 @@ abstract public class AnyPicture implements Picture {
 		}
 		this.setPixel(c.getX(), c.getY(), p);
 	}
-	
+
 	@Override
 	public SubPicture extract(int xoff, int yoff, int width, int height) {
 		return new SubPictureImpl(this, xoff, yoff, width, height);
@@ -43,7 +43,7 @@ abstract public class AnyPicture implements Picture {
 		
 		return extract(min_x, min_y, (max_x-min_x)+1, (max_y-min_y)+1);
 	}
-	
+
 	@Override
 	public SubPicture extract(Region r) {
 		if (r == null) {
@@ -52,11 +52,13 @@ abstract public class AnyPicture implements Picture {
 		return extract(r.getUpperLeft(), r.getLowerRight());
 	}
 	
+	//PF: Creates an ObservablePictureImpl from the current "AnyPicture"
 	@Override
 	public ObservablePicture createObservable() {
 		return new ObservablePictureImpl(this);
 	}
 
+	//PF: Creates a (Picture) copy/clone from the current "AnyPicture" 
 	@Override
 	public Picture copy() {
 		PictureImpl copy = new PictureImpl(getWidth(), getHeight());

@@ -11,7 +11,7 @@ public class ColorPixel implements Pixel {
 	private static final double GREEN_INTENSITY_FACTOR = 0.587;
 	private static final double BLUE_INTENSITY_FACTOR = 0.114;
 
-	private static final char[] PIXEL_CHAR_MAP = {'#', 'M', 'X', 'D', '<', '>', 's', ':', '-', ' ', ' '};
+	//private static final char[] PIXEL_CHAR_MAP = {'#', 'M', 'X', 'D', '<', '>', 's', ':', '-', ' ', ' '};
 	
 	public ColorPixel(double r, double g, double b) {
 		if (r > 1.0 || r < 0.0) {
@@ -50,18 +50,20 @@ public class ColorPixel implements Pixel {
 				BLUE_INTENSITY_FACTOR*getBlue();
 	}
 	
-	@Override
-	public char getChar() {
-		int char_idx = (int) (getIntensity()*10.0);
-		return PIXEL_CHAR_MAP[char_idx];
-	}
+//	@Override
+//	public char getChar() {
+//		int char_idx = (int) (getIntensity()*10.0);
+//		return PIXEL_CHAR_MAP[char_idx];
+//	}
 	
+	//PF: Converts Pixel to RGB value
 	public static int pixelToRGB(Pixel p) {
 		return ((((int) (p.getRed() * 255.0 + 0.5)) << 16) |
 				(((int) (p.getGreen() * 255.0 + 0.5)) << 8) |
 				(((int) (p.getBlue() * 255.0 + 0.5))));
 	}
 
+	//PF: Converts RGB value to a pixel
 	public static Pixel rgbToPixel(int RGB) {
 		double red = ((double) ((RGB >> 16) & 0xff)) / 255.0;
 		double green = ((double) ((RGB >> 8) & 0xff)) / 255.0;

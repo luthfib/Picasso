@@ -34,8 +34,8 @@ public class GrayPixel implements Pixel {
 		return intensity;
 	}
 
-	@Override
-	public char getChar() {
-		return PIXEL_CHAR_MAP[(int) (getIntensity()*10.0)];
-	}	
+//	@Override
+//	public char getChar() {
+//		return PIXEL_CHAR_MAP[(int) (getIntensity()*10.0)];
+//	}	
 }

@@ -6,5 +6,5 @@ public interface Pixel {
 	public double getBlue();
 	public double getGreen();
 	public double getIntensity();
-	public char getChar();	
+	//public char getChar();	
 }
