@@ -10,6 +10,7 @@ Rules of coding:
 3. If there is an option to write the idea as an abstraction (object) Do it! Supposedly good abstractions should be less than 25 lines of code.
 
 *Initial next to each edit, or if you want we can come up with nicknames, in the code so we can tell who did what/(who to blame when shit hits the fan) similar to below:
+
 //PF: This is a comment
 
 /* PF:
