@@ -6,6 +6,11 @@ import java.awt.event.MouseMotionListener;
 
 public class ImageEditorController implements ToolChoiceListener, MouseListener, MouseMotionListener {
 
+	//PF: All user inputs should come through here.
+	//Tools are instantiated here.
+	//User inputs are delegated to current tool.
+	//Contains view(main_frame), model, and all tools.
+	
 	private ImageEditorView view;
 	private ImageEditorModel model;
 	private Tool current_tool;
@@ -16,16 +21,24 @@ public class ImageEditorController implements ToolChoiceListener, MouseListener,
 		this.view = view;
 		this.model = model;
 
+		//PF: This is where tools are instantiated
 		inspector_tool = new PixelInspectorTool(model);
 		paint_brush_tool = new PaintBrushTool(model);
 		
+		//PF: Controller gets added to view
 		view.addToolChoiceListener(this);
 		view.addMouseListener(this);
 		view.addMouseMotionListener(this);
 		
+		//PF: This is where the Tool UI (Pixel Inspector UI) first gets chosen at startup.
+		//This calls on View's current tool name which is delegated to Chooser Widget.
+		//Since Chooser Widget's first tool is Pixel Inspector, it gets selected by default.
 		this.toolChosen(view.getCurrentToolName());
 	}
-
+	
+	//PF: This is where current tool is actually changed.
+	//The Tool UI gets changed in View through the installToolUI method
+	//and then the Current Tool gets set to the tool chosen.
 	@Override
 	public void toolChosen(String tool_name) {
 		if (tool_name.equals("Pixel Inspector")) {
@@ -37,6 +50,7 @@ public class ImageEditorController implements ToolChoiceListener, MouseListener,
 		} 
 	}
 
+	//PF: All Mouse Events gets delegated to the current tool.
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		current_tool.mouseClicked(e);
