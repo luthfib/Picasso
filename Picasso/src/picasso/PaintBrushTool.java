@@ -8,7 +8,8 @@ public class PaintBrushTool implements Tool {
 
 	private PaintBrushToolUI ui;
 	private ImageEditorModel model;
-	private int brush_size = 5;
+	//LB no longer needed: private int brush_size = 5; 
+	
 	
 	public PaintBrushTool(ImageEditorModel model) {
 		this.model = model;
@@ -22,9 +23,13 @@ public class PaintBrushTool implements Tool {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		model.paintAt(e.getX(), e.getY(), ui.getBrushColor(), brush_size);
+		//LB replaced brush size with ui.getBrushSize()
+		model.paintAt(e.getX(), e.getY(), ui.getBrushColor(), ui.getBrushSize());
+		
 	}
 
+	
+	
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -45,7 +50,8 @@ public class PaintBrushTool implements Tool {
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
-		model.paintAt(e.getX(), e.getY(), ui.getBrushColor(), brush_size);
+		//LB replaced brush size with ui.getBrushSize()
+		model.paintAt(e.getX(), e.getY(), ui.getBrushColor(), ui.getBrushSize());
 	}
 
 	@Override
