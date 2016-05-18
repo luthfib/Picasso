@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+//random comment
+//more random
 
 public class PaintBrushToolUI extends JPanel implements ChangeListener {
 
