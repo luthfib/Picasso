@@ -16,6 +16,10 @@ public class PaintBrushToolUI extends JPanel implements ChangeListener {
 	private JSlider green_slider;
 	private JSlider blue_slider;
 	private PictureView color_preview;
+	//LB brush slider
+	private JSlider brush_size_slider;
+	//LB brush size 
+	private int brush_size;
 	
 	public PaintBrushToolUI() {
 		setLayout(new GridLayout(0,1));
@@ -49,16 +53,29 @@ public class PaintBrushToolUI extends JPanel implements ChangeListener {
 		blue_slider = new JSlider(0,100);
 		blue_slider.addChangeListener(this);
 		blue_slider_panel.add(blue_slider, BorderLayout.CENTER);
+		
+		
+		//LB this sets the brush slider 
+		JPanel brush_size_slider_panel = new JPanel();
+		JLabel brush_size_label = new JLabel("Size: ");
+		brush_size_slider_panel.setLayout(new BorderLayout());
+		brush_size_slider_panel.add(brush_size_label, BorderLayout.WEST);
+		brush_size_slider = new JSlider(0,100, 5);
+		brush_size_slider.addChangeListener(this);
+		brush_size_slider_panel.add(brush_size_slider, BorderLayout.CENTER);
 
 		// Assumes green label is widest and asks red and blue label
 		// to be the same.
 		Dimension d = green_label.getPreferredSize();
 		red_label.setPreferredSize(d);
 		blue_label.setPreferredSize(d);
+		brush_size_label.setPreferredSize(d);//LB 
 		
 		slider_panel.add(red_slider_panel);
 		slider_panel.add(green_slider_panel);
 		slider_panel.add(blue_slider_panel);
+		//LB adds the brush size slider to the slider panel
+		slider_panel.add(brush_size_slider_panel);
 
 		color_chooser_panel.add(slider_panel, BorderLayout.CENTER);
 
@@ -67,11 +84,15 @@ public class PaintBrushToolUI extends JPanel implements ChangeListener {
 
 		add(color_chooser_panel);
 		
+		//LB gets the brush size value
+		brush_size = brush_size_slider.getValue();
 		stateChanged(null);
 	}
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
+		//LB gets the brush size value 
+		brush_size =  brush_size_slider.getValue();
 		Pixel p = new ColorPixel(red_slider.getValue()/100.0,
 				                 green_slider.getValue()/100.0,
 				                 blue_slider.getValue()/100.0);
@@ -84,6 +105,14 @@ public class PaintBrushToolUI extends JPanel implements ChangeListener {
 		}
 		preview_frame.resumeObservable();
 	}
+		
+	
+	
+	//LB sets the Brush size 
+	public int getBrushSize() {
+		return brush_size;
+	}
+	
 	
 	public Pixel getBrushColor() {
 		return color_preview.getPicture().getPixel(0,0);
