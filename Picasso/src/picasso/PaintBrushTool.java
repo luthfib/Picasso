@@ -9,6 +9,7 @@ public class PaintBrushTool implements Tool {
 	private PaintBrushToolUI ui;
 	private ImageEditorModel model;
 	//LB no longer needed: private int brush_size = 5; 
+	//random comment
 	
 	
 	public PaintBrushTool(ImageEditorModel model) {
